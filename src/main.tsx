@@ -5,7 +5,7 @@ import ErrorPage from './ErrorPage.tsx';
 import GameRoom from './GameRoom.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import TopBar from './TopBar.tsx';
+import TopBar from './Components/TopBar.tsx';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: '/room/:id',
+    path: '/room/:roomId',
     element: <GameRoom />,
     errorElement: <ErrorPage />
   }

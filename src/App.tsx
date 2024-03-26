@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import CreateUsername from './CreateUsername.tsx';
+import Button from './Components/Button.tsx';
 import './App.css';
 
 function App() {
   const [showUserNameCreation, setShowUserNameCreation] = useState(true);
   const [username, setUsername] = useState('');
+  const [roomCreationMode, setRoomCreationMode] = useState<boolean>(true);
 
   useEffect(() => {
     readCookie();
@@ -13,6 +15,13 @@ function App() {
   useEffect(() => {
     setCookie();
   }, [showUserNameCreation]);
+
+  useEffect(() => {
+    // Update the active prop whenever roomCreationMode changes
+    // This ensures that the Button component reflects the updated state
+    // of roomCreationMode
+    setRoomCreationMode(roomCreationMode);
+  }, [roomCreationMode]);
 
   // Function to read the cookie
   const readCookie = () => {
@@ -56,17 +65,24 @@ function App() {
         <>
           <h1 className="text-2xl font-bold text-white my-10">Bienvenue, {username}</h1>
           <div className={'flex gap-10'}>
-            <button className="bg-indigo-500 enabled:hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full w-max h-10 disabled:cursor-not-allowed disabled:opacity-50">
+            <Button
+              active={roomCreationMode}
+              onClick={() => {
+                setRoomCreationMode(true);
+              }}>
               Créer une partie
-            </button>
-            <button className="bg-gray-900 border-2 border-indigo-500 enabled:hover:border-indigo-300 enabled:hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full w-max h-10 disabled:cursor-not-allowed disabled:opacity-50">
+            </Button>
+            <Button
+              active={!roomCreationMode}
+              onClick={() => {
+                setRoomCreationMode(false);
+              }}>
               Rejoindre une partie
-            </button>
+            </Button>
           </div>
         </>
       )}
     </>
   );
 }
-
 export default App;
