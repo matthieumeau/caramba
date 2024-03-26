@@ -1,6 +1,6 @@
 interface CreateUsernameProps {
   active?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   children: string;
   onClick?: () => void;
 }

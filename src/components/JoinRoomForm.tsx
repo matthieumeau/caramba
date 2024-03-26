@@ -6,7 +6,6 @@ const JoinRoomForm = () => {
   const [roomId, setRoomId] = useState<string>('');
   const navigate = useNavigate();
   const handleSubmit = () => {
-    // Redirect to '/room/:roomId' when the button is clicked
     navigate(`/room/${roomId}`);
   };
 
