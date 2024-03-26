@@ -1,28 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import ErrorPage from './ErrorPage.tsx';
-import GameRoom from './GameRoom.tsx';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Router from './Router.tsx';
+import { RouterProvider } from 'react-router-dom';
 import './index.css';
-import TopBar from './Components/TopBar.tsx';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: '/room/:roomId',
-    element: <GameRoom />,
-    errorElement: <ErrorPage />
-  }
-]);
+import TopBar from './components/TopBar.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <TopBar />
-    <RouterProvider router={router} />
+    <RouterProvider router={Router} />
   </React.StrictMode>
 );

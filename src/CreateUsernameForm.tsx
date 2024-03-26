@@ -4,7 +4,11 @@ interface CreateUsernameProps {
   onInputChange: () => void;
 }
 
-const CreateUsername: React.FC<CreateUsernameProps> = ({ username, onValidate, onInputChange }) => {
+const CreateUsernameForm: React.FC<CreateUsernameProps> = ({
+  username,
+  onValidate,
+  onInputChange
+}) => {
   return (
     <>
       <div className="w-80 h-max bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -37,4 +41,4 @@ const CreateUsername: React.FC<CreateUsernameProps> = ({ username, onValidate, o
   );
 };
 
-export default CreateUsername;
+export default CreateUsernameForm;

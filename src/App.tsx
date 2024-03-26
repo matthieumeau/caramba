@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import CreateUsername from './CreateUsername.tsx';
-import Button from './Components/Button.tsx';
+import CreateUsernameForm from './CreateUsernameForm.tsx';
+import Button from './components/Button.tsx';
 import './App.css';
+import JoinRoomForm from './components/JoinRoomForm.tsx';
 
 function App() {
-  const [showUserNameCreation, setShowUserNameCreation] = useState(true);
-  const [username, setUsername] = useState('');
+  const [showUserNameCreation, setShowUserNameCreation] = useState<boolean>(true);
+  const [username, setUsername] = useState<string>('');
   const [roomCreationMode, setRoomCreationMode] = useState<boolean>(true);
 
   useEffect(() => {
@@ -15,13 +16,6 @@ function App() {
   useEffect(() => {
     setCookie();
   }, [showUserNameCreation]);
-
-  useEffect(() => {
-    // Update the active prop whenever roomCreationMode changes
-    // This ensures that the Button component reflects the updated state
-    // of roomCreationMode
-    setRoomCreationMode(roomCreationMode);
-  }, [roomCreationMode]);
 
   // Function to read the cookie
   const readCookie = () => {
@@ -59,7 +53,11 @@ function App() {
   return (
     <>
       {showUserNameCreation && (
-        <CreateUsername username={username} onValidate={validate} onInputChange={onInputChange} />
+        <CreateUsernameForm
+          username={username}
+          onValidate={validate}
+          onInputChange={onInputChange}
+        />
       )}
       {!showUserNameCreation && (
         <>
@@ -80,6 +78,11 @@ function App() {
               Rejoindre une partie
             </Button>
           </div>
+        </>
+      )}
+      {!showUserNameCreation && !roomCreationMode && (
+        <>
+          <JoinRoomForm />
         </>
       )}
     </>
