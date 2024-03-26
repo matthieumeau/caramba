@@ -40,7 +40,8 @@ function Index() {
     document.cookie = `userName=${username}; expires=${expires};`;
   };
 
-  function validate() {
+  function validate(e) {
+    e.preventDefault();
     setShowUserNameCreation(false);
   }
 

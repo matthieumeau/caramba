@@ -1,4 +1,5 @@
 interface CreateUsernameProps {
+  type?: 'button' | 'submit' | 'reset';
   active?: boolean;
   disabled?: boolean;
   children: string;
@@ -6,6 +7,7 @@ interface CreateUsernameProps {
 }
 
 const Button: React.FC<CreateUsernameProps> = ({
+  type = 'button',
   active = true,
   disabled = false,
   children,
@@ -14,6 +16,7 @@ const Button: React.FC<CreateUsernameProps> = ({
   return (
     <>
       <button
+        type={type}
         onClick={onClick}
         disabled={disabled}
         className={

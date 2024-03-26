@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ChatBoxMessage from './ChatBox/ChatBoxMessage.tsx';
 const ChatBox = () => {
   const [message, setMessage] = useState<string>('');
-  const sendMessage = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const sendMessage = (e) => {
+    e.preventDefault();
     console.log('SEND', message);
+    setMessage('');
+  };
+
+  const onEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (formRef.current) {
+        sendMessage(e);
+      }
+    }
   };
 
   return (
@@ -12,23 +24,26 @@ const ChatBox = () => {
         <div className="w-full h-full text-sm rounded-lg border bg-gray-900 border-gray-600 placeholder-gray-400 text-whited mb-3 p-3">
           <ChatBoxMessage />
         </div>
-        <div className="flex flex-col items-center">
-          <textarea
-            id="message"
-            rows="2"
-            className="block p-2.5 w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-whited mb-3"
-            placeholder="Votre message ..."
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}></textarea>
-          <button
-            onClick={sendMessage}
-            disabled={!message.length}
-            className="text-sm font-semibold bg-indigo-500 enabled:hover:bg-indigo-700 text-white py-1 px-3 rounded-md w-max h-max disabled:cursor-not-allowed disabled:opacity-50">
-            Envoyer
-          </button>
-        </div>
+        <form onSubmit={sendMessage} ref={formRef}>
+          <div className="flex flex-col items-center">
+            <textarea
+              id="message"
+              rows="2"
+              className="block p-2.5 w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-whited mb-3"
+              placeholder="Votre message ..."
+              value={message}
+              onKeyDown={onEnterPress}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}></textarea>
+            <button
+              type="submit"
+              disabled={!message.length}
+              className="text-sm font-semibold bg-indigo-500 enabled:hover:bg-indigo-700 text-white py-1 px-3 rounded-md w-max h-max disabled:cursor-not-allowed disabled:opacity-50">
+              Envoyer
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );
