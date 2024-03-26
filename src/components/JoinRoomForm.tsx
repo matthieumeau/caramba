@@ -11,7 +11,7 @@ const JoinRoomForm = () => {
 
   return (
     <>
-      <div className="w-80 h-max bg-white rounded-lg shadow dark:border mt-10 dark:bg-gray-900 dark:border-gray-700">
+      <div className="w-80 h-max rounded-lg shadow border mt-10 bg-gray-900 border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <div>
             <label htmlFor="pseudo" className="block mb-2 text-sm font-medium text-white text-left">

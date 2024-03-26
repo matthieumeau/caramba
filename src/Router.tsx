@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from './ErrorPage.tsx';
-import GameRoom from './pages/GameRoom.tsx';
+import GameRoom from './pages/GameBox.tsx';
 import Index from './pages/Index.tsx';
 
 const Router = createBrowserRouter([
