@@ -1,12 +1,10 @@
 const ChatBoxMessage = () => {
+  let avatarUrl = `/src/assets/avatars/avatar_${Math.floor(Math.random() * (20 - 1 + 1) + 1)}.svg`;
+
   return (
     <>
       <div className="flex items-start gap-2.5">
-        <img
-          className="w-8 h-8 rounded-full"
-          src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-          alt="Jese image"
-        />
+        <img src={avatarUrl} alt="" className="w-8 h-8 rounded-full" />
         <div className="flex flex-col w-full max-w-[320px] leading-1.5 p-2 border-gray-200 rounded-e-xl rounded-es-xl bg-gray-700">
           <div className="flex items-center space-x-2 rtl:space-x-reverse">
             <span className="text-xs font-semibold text-white">Bonnie Green</span>
