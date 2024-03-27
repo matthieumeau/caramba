@@ -1,4 +1,4 @@
-const ChatBoxMessage = () => {
+const ChatBoxMessage = ({ message }: { message: string }) => {
   let avatarUrl = `/src/assets/avatars/avatar_${Math.floor(Math.random() * (20 - 1 + 1) + 1)}.svg`;
 
   return (
@@ -10,9 +10,7 @@ const ChatBoxMessage = () => {
             <span className="text-xs font-semibold text-white">Bonnie Green</span>
             <span className="text-[10px] font-normal text-gray-400">11:46</span>
           </div>
-          <p className="text-[10px] font-normal pt-2.5 text-white text-left">
-            That's awesome. I think our users will really appreciate the improvements.
-          </p>
+          <p className="text-[10px] font-normal pt-2.5 text-white text-left">{message}</p>
         </div>
       </div>
     </>
