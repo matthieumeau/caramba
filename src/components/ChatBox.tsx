@@ -3,12 +3,19 @@ import { useParams } from 'react-router-dom'; // Import useParams if you're usin
 import ChatBoxMessage from './ChatBox/ChatBoxMessage.tsx';
 import { useSocketCtx } from '../contexts/sockets.ts';
 
+interface Message {
+  message: string;
+  username: string;
+  room: string | undefined;
+}
+
+
 const ChatBox = () => {
   const [message, setMessage] = useState<string>('');
   const formRef = useRef<HTMLFormElement>(null);
   const { socket } = useSocketCtx();
   const { roomId } = useParams<string>();
-  const [conversation, setConversation] = useState<string[]>([]);
+  const [conversation, setConversation] = useState<Message[]>([{username: 'Dracaufeu', message: 'TESTus'}]);
 
   useEffect(() => {
     const messageHandler = (newMessage: string) => {
@@ -44,8 +51,8 @@ const ChatBox = () => {
   return (
     <div className="w-[400px] h-[90%] px-3 pb-3 pt-5 text rounded-lg shadow border bg-gray-800 border-gray-700 absolute top-0 right-5 flex flex-col justify-between">
       <div className="w-full h-full text-sm rounded-lg border bg-gray-900 border-gray-600 placeholder-gray-400 text-whited mb-3 p-3">
-        {conversation.map((message, index) => (
-          <ChatBoxMessage key={index} message={message} />
+        {conversation.map((el, index) => (
+          <ChatBoxMessage key={index} message={el.message} username={el.username} />
         ))}
       </div>
       <form onSubmit={sendMessage} ref={formRef}>
